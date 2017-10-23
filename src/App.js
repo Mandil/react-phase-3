@@ -1,27 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Navbar from './containers/Navbar'
 import ProfileCard from './components/ProfileCard'
 import Content from './components/Content'
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      target: 'home',
+    }
+  }
+
   render() {
+    const onClick = (e) => {
+      this.setState({target: e.target.id});
+    }
+
     return (
       <div className="App">
 
-        <Navbar />
+        <Navbar onClick={onClick}/>
 
-      <div className='page'>
-        <div className='container-fluid top-padding'>
-          <div className='col-md-2'>
-            <ProfileCard />
+        <div className='page'>
+          <div className='container-fluid top-padding'>
+            <div className='col-md-2'>
+              <ProfileCard />
+            </div>
+            <div className='col-md-8'>
+              <Content contentId={this.state.target}/>
+            </div>
           </div>
-          <div className='col-md-8'>
-            <Content />
-          </div>
+
         </div>
-      </div>
 
       </div>
     );
