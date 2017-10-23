@@ -4,20 +4,6 @@ import About from './About';
 import Contact from './Contact';
 
 class Content extends Component {
-  constructor(props) {
-    super(props);
-    let page = this.changePage(props);
-    this.state = {
-      page: page,
-    }
-  }
-
-  componentWillReceiveProps(newProps){
-    let newPage = this.changePage(newProps);
-    if (newPage !== this.state.page){
-      this.setState({page: newPage});
-    }
-  }
 
   changePage(props){
     if (props.contentId === 'contact'){
@@ -31,7 +17,7 @@ class Content extends Component {
 
   render(){
     return(<div>
-      {this.state.page}
+      {this.changePage(this.props)}
       </div>)
   }
 }
